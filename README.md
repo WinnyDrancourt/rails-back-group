@@ -19,34 +19,34 @@
 
   - Request :
 
-  ````json
+  ```json
       {
         "user": {
           "email": "test@test.fr",
-          "password": "test",
+          "password": "test"
         }
       }
 
-  ````
+  ```
 
 - Update of a user : Url/users PUT
 
   - Request :
 
-  ````json
+  ```json
       {
         "user": {
           "email": "test@test.fr",
-          "password": "test",
+          "password": "test"
         }
       }
 
-  ````
+  ```
 
 - Log out of a user : Url/users/sign_out DELETE
   -Request :
 
-````json
+```json
   {
     headers: {
       "content-type": "application/json",
@@ -54,7 +54,6 @@
     }
   }
 ```
-````
 
 ## Request Product
 
@@ -62,7 +61,7 @@
 
   - Request :
 
-  ````json
+  ```json
   {
     headers: {
       "content-type": "application/json",
@@ -75,13 +74,12 @@
     }
   }
   ```
-  ````
 
 - Update of a product : Url/products PUT
 
   - Request :
 
-  ````json
+```json
   {
     headers: {
       "content-type": "application/json",
@@ -90,17 +88,16 @@
     "product": {
       "title": "test",
       "price": 10,
-      description: "test",
+      description: "test"
     }
   }
 ```
-  ````
 
 - Delete of a product : Url/products DELETE
 
   - Request :
 
-  ````json
+  ```json
   {
     headers: {
       "content-type": "application/json",
@@ -108,7 +105,6 @@
     }
   }
 ```
-  ````
 
 -Gets all products : Url/products GET
 
