@@ -48,7 +48,7 @@
 
 ```json
   {
-    headers: {
+    "headers": {
       "content-type": "application/json",
       Authorization: Bearer token
     }
@@ -63,7 +63,7 @@
 
   ```json
   {
-    headers: {
+    "headers": {
       "content-type": "application/json",
       Authorization: "Bearer token"
     }
@@ -81,7 +81,7 @@
 
 ```json
   {
-    headers: {
+    "headers": {
       "content-type": "application/json",
       Authorization: Bearer token
       }
@@ -99,7 +99,7 @@
 
   ```json
   {
-    headers: {
+    "headers": {
       "content-type": "application/json",
       Authorization: Bearer token
     }
