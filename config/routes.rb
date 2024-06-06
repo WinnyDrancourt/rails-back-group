@@ -5,6 +5,11 @@ Rails.application.routes.draw do
       sessions: "users/sessions",
       registrations: "users/registrations"
     }
+    # devise_scope :user do
+    #   post 'users/password/recover', to: 'users/registrations#recover_password'
+    #   put 'users/password/reset', to: 'users/registrations#reset_password' # Add this line
+    # end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

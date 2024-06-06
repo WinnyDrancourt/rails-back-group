@@ -9,6 +9,9 @@
 #   end
 require 'faker'
 
+User.destroy_all
+Product.destroy_all
+
 User.create(
   email: "admin@admin.fr",
   password: "admin123"
