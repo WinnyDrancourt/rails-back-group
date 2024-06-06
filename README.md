@@ -53,6 +53,7 @@
       Authorization: Bearer token
     }
   }
+```
 ````
 
 ## Request Product
@@ -61,7 +62,7 @@
 
   - Request :
 
-  ```json
+  ````json
   {
     headers: {
       "content-type": "application/json",
@@ -74,6 +75,7 @@
     }
   }
   ```
+  ````
 
 - Update of a product : Url/products PUT
 
@@ -91,7 +93,7 @@
       description: "test",
     }
   }
-
+```
   ````
 
 - Delete of a product : Url/products DELETE
@@ -105,7 +107,7 @@
       Authorization: Bearer token
     }
   }
-
+```
   ````
 
 -Gets all products : Url/products GET
