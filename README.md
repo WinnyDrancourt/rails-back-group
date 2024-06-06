@@ -26,7 +26,6 @@
           "password": "test",
         }
       }
-      ```
 
   ````
 
@@ -41,7 +40,6 @@
           "password": "test",
         }
       }
-      ```
 
   ````
 
@@ -55,7 +53,6 @@
       Authorization: Bearer token
     }
   }
-      ```
 ````
 
 ## Request Product
@@ -94,7 +91,6 @@
       description: "test",
     }
   }
-        ```
 
   ````
 
@@ -109,7 +105,7 @@
       Authorization: Bearer token
     }
   }
-      ```
+
   ````
 
 -Gets all products : Url/products GET
