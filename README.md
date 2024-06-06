@@ -6,20 +6,20 @@
 
   - Request :
 
-  ```json
+```json
   {
     "user": {
       "email": "test@test.fr",
       "password": "test"
     }
   }
-  ```
+```
 
 - Connection of a user : Url/users/sign_in POST
 
   - Request :
 
-  ```json
+```json
       {
         "user": {
           "email": "test@test.fr",
@@ -27,13 +27,13 @@
         }
       }
 
-  ```
+```
 
 - Update of a user : Url/users PUT
 
   - Request :
 
-  ```json
+```json
       {
         "user": {
           "email": "test@test.fr",
@@ -41,7 +41,7 @@
         }
       }
 
-  ```
+```
 
 - Log out of a user : Url/users/sign_out DELETE
   -Request :
@@ -61,7 +61,7 @@
 
   - Request :
 
-  ```json
+```json
   {
     "headers": {
       "content-type": "application/json",
@@ -73,7 +73,7 @@
       "quantity": 10
     }
   }
-  ```
+```
 
 - Update of a product : Url/products PUT
 
@@ -97,7 +97,7 @@
 
   - Request :
 
-  ```json
+```json
   {
     "headers": {
       "content-type": "application/json",
