@@ -50,7 +50,7 @@
   {
     "headers": {
       "content-type": "application/json",
-      "Authorization": Bearer token
+      "Authorization": "Bearer token"
     }
   }
 ```
@@ -83,7 +83,7 @@
   {
     "headers": {
       "content-type": "application/json",
-      "Authorization": Bearer token
+      "Authorization": "Bearer token"
       }
     "product": {
       "title": "test",
@@ -101,7 +101,7 @@
   {
     "headers": {
       "content-type": "application/json",
-      "Authorization": Bearer token
+      "Authorization": "Bearer token"
     }
   }
 ```
