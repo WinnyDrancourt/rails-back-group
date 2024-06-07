@@ -13,17 +13,19 @@ User.destroy_all
 Product.destroy_all
 
 User.create(
-  email: "admin@admin.fr",
+  email: "superadmin@yopmail.fr",
   password: "admin123"
 )
+puts "admin created mail sent"
 
-10.times do
-User.create(
+5.times do
+testuser = User.create(
   email: Faker::Internet.email,
   password: "password"
 )
-puts "User created"
 end
+
+puts "Users created mail sent"
 
 50.times do
 Product.create(
@@ -32,5 +34,5 @@ Product.create(
   description: Faker::Lorem.paragraph,
   user_id: User.all.sample.id
 )
-puts "Product created"
 end
+puts "Product created"
