@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show update destroy ]
+  before_action :authenticate_user!, only: %i[ create update destroy ]
+  before_action :authorize_user, only: %i[ update destroy ]
 
   # GET /products
   def index
@@ -42,6 +44,12 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def authorize_user
+      if @product && @product.user_id != current_user.id
+        render json: { error: "You are not authorized to perform this action" }, status: :unauthorized
+      end
     end
 
     # Only allow a list of trusted parameters through.
