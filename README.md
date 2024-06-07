@@ -7,12 +7,12 @@
   - Request :
 
 ```json
-  {
-    "user": {
-      "email": "test@test.fr",
-      "password": "test"
-    }
+{
+  "user": {
+    "email": "test@test.fr",
+    "password": "test"
   }
+}
 ```
 
 - Connection of a user : Url/users/sign_in POST
@@ -20,13 +20,12 @@
   - Request :
 
 ```json
-      {
-        "user": {
-          "email": "test@test.fr",
-          "password": "test"
-        }
-      }
-
+{
+  "user": {
+    "email": "test@test.fr",
+    "password": "test"
+  }
+}
 ```
 
 - Update of a user : Url/users PUT
@@ -34,26 +33,27 @@
   - Request :
 
 ```json
-      {
-        "user": {
-          "email": "test@test.fr",
-          "password": "test"
-        }
-      }
-
+{
+  "user": {
+    "email": "test@test.fr",
+    "password": "test"
+  }
+}
 ```
 
 - Log out of a user : Url/users/sign_out DELETE
   -Request :
 
 ```json
-  {
-    "headers": {
-      "content-type": "application/json",
-      "Authorization": "Bearer token"
-    }
+{
+  "headers": {
+    "content-type": "application/json",
+    "Authorization": "Bearer token"
   }
+}
 ```
+
+- All product of a user : Url/users/:userId/products GET
 
 ## Request Product
 
@@ -98,12 +98,12 @@
   - Request :
 
 ```json
-  {
-    "headers": {
-      "content-type": "application/json",
-      "Authorization": "Bearer token"
-    }
+{
+  "headers": {
+    "content-type": "application/json",
+    "Authorization": "Bearer token"
   }
+}
 ```
 
 -Gets all products : Url/products GET

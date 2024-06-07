@@ -18,6 +18,9 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @product = current_user.products.build(product_params)
+    if params[:image].present?
+      @product.image.attach(params[:image])
+    end
 
     if @product.save
       render json: @product, status: :created, location: @product
