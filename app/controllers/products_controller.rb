@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
-    render json: @product
+    render json: @product.as_json(include: { user: { only: [:email] } })
   end
 
   # POST /products
