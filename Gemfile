@@ -48,3 +48,5 @@ gem "faker", "~> 3.4"
 gem "table_print", "~> 1.5"
 
 gem "dotenv", "~> 3.1"
+gem "letter_opener"
+gem "dockerfile-rails", ">= 1.6", :group => :development

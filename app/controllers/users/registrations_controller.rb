@@ -20,4 +20,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render json: { message: "Something went wrong" },
     status: :unprocessable_entity
   end
+
+
 end

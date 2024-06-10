@@ -1,9 +1,15 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show update destroy ]
+  before_action :authenticate_user!, only: %i[ create update destroy ]
+  before_action :authorize_user, only: %i[ update destroy ]
 
   # GET /products
   def index
-    @products = Product.all
+    if params[:user_id]
+      @products = Product.where(user_id: params[:user_id])
+    else
+      @products = Product.all
+    end
 
     render json: @products
   end
@@ -16,6 +22,9 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @product = current_user.products.build(product_params)
+    if params[:image].present?
+      @product.image.attach(params[:image])
+    end
 
     if @product.save
       render json: @product, status: :created, location: @product
@@ -42,6 +51,12 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def authorize_user
+      if @product && @product.user_id != current_user.id
+        render json: { error: "You are not authorized to perform this action" }, status: :unauthorized
+      end
     end
 
     # Only allow a list of trusted parameters through.
