@@ -11,6 +11,14 @@ class ProductsController < ApplicationController
       @products = Product.all
     end
 
+    if params[:property_type]
+      @products = @products.where(property_type: params[:property_type])
+    end
+  
+    if params[:city]
+      @products = @products.where(city: params[:city])
+    end
+
     if params[:_limit]
       limit = params[:_limit].to_i
       page = params[:page] ? params[:page].to_i : 1
