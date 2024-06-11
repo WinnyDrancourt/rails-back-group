@@ -11,6 +11,14 @@ class ProductsController < ApplicationController
       @products = Product.all
     end
 
+    if params[:_limit]
+      limit = params[:_limit].to_i
+      page = params[:page] ? params[:page].to_i : 1
+      offset = (page - 1) * limit
+  
+      @products = @products.limit(limit).offset(offset)
+    end
+
     render json: @products
   end
 
