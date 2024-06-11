@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 require 'faker'
+Faker::Config.locale = 'fr'
 
 User.destroy_all
 Product.destroy_all
@@ -28,11 +29,30 @@ end
 puts "Users created mail sent"
 
 50.times do
-Product.create(
-  title: Faker::Commerce.product_name,
-  price: Faker::Commerce.price,
-  description: Faker::Lorem.paragraph,
-  user_id: User.all.sample.id
-)
+  Product.create!(
+    property_type: ['appartement', 'maison'].sample,
+    category: ['neuf', 'ancien', 'projet de construction'].sample,
+    city: Faker::Address.city[0...100],
+    title: Faker::Lorem.characters(number: rand(5..50)),
+    price: Faker::Commerce.price(range: 10000..10000000),
+    description: Faker::Lorem.characters(number: rand(50..400)),
+    user_id: User.all.sample.id,
+    pool: [true, false].sample,
+    balcony: [true, false].sample,
+    parking: [true, false].sample,
+    garage: [true, false].sample,
+    cellar: [true, false].sample,
+    number_of_floors: rand(0..50),
+    elevator: [true, false].sample,
+    disabled_access: [true, false].sample,
+    energy_performance_diagnostic: ['A', 'B', 'C', 'D', 'E', 'F', 'G'].sample,
+    area: Faker::Number.between(from: 9, to: 1500),
+    number_of_rooms: rand(1..25),
+    furnished: [true, false].sample,
+    terrace: [true, false].sample,
+    garden: [true, false].sample,
+    basement: [true, false].sample,
+    caretaker: [true, false].sample
+  )
 end
-puts "Product created"
+puts "Products created"

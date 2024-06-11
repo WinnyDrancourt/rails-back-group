@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_06_07_112323) do
+ActiveRecord::Schema[7.2].define(version: 2024_06_11_081819) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,25 @@ ActiveRecord::Schema[7.2].define(version: 2024_06_07_112323) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "property_type"
+    t.string "category"
+    t.boolean "pool"
+    t.boolean "balcony"
+    t.boolean "parking"
+    t.boolean "garage"
+    t.boolean "cellar"
+    t.integer "number_of_floors"
+    t.boolean "elevator"
+    t.boolean "disabled_access"
+    t.string "energy_performance_diagnostic"
+    t.decimal "area"
+    t.integer "number_of_rooms"
+    t.boolean "furnished"
+    t.boolean "terrace"
+    t.boolean "garden"
+    t.boolean "basement"
+    t.boolean "caretaker"
+    t.string "city"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -68,6 +87,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_06_07_112323) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "owner"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
