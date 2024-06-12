@@ -14,6 +14,34 @@ class ProductsController < ApplicationController
     if params[:property_type]
       @products = @products.where(property_type: params[:property_type])
     end
+
+    if params[:priceMax] && params[:priceMin]
+      @products = @products.where('price BETWEEN ? AND ?', params[:priceMin], params[:priceMax])
+    elsif params[:priceMax]
+      @products = @products.where('price <= ?', params[:priceMax])
+    elsif params[:priceMin]
+      @products = @products.where('price >= ?', params[:priceMin])
+    end
+  
+    if params[:areaMax] && params[:areaMin]
+      @products = @products.where('area BETWEEN ? AND ?', params[:areaMin], params[:areaMax])
+    elsif params[:areaMax]
+      @products = @products.where('area <= ?', params[:areaMax])
+    elsif params[:areaMin]
+      @products = @products.where('area >= ?', params[:areaMin])
+    end
+
+    if params[:number_of_rooms]
+      if params[:number_of_rooms].to_i >= 5
+        @products = @products.where("number_of_rooms >= ?", params[:number_of_rooms])
+      else
+        @products = @products.where(number_of_rooms: params[:number_of_rooms])
+      end
+    end
+
+    if params[:parking]
+      @products = @products.where(parking: params[:parking])
+    end
   
     if params[:city]
       @products = @products.where(city: params[:city])
