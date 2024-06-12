@@ -38,6 +38,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "rspec-rails"
 end
 
 
@@ -49,4 +50,4 @@ gem "table_print", "~> 1.5"
 
 gem "dotenv", "~> 3.1"
 gem "letter_opener"
-gem "dockerfile-rails", ">= 1.6", :group => :development
+gem "dockerfile-rails", ">= 1.6", group: :development
