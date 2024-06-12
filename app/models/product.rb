@@ -21,5 +21,4 @@ class Product < ApplicationRecord
    validates :energy_performance_diagnostic, presence: true
    validates :area, presence: true, numericality: { greater_than_or_equal_to: 9, less_than_or_equal_to: 1500 }
    validates :number_of_rooms, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 25 }
- 
 end
