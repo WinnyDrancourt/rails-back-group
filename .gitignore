@@ -34,4 +34,4 @@
 
 /config/credentials/development.key
 /config/credentials.yml.enc
-!/config/credentials.yml.enc
+# !/config/credentials.yml.enc  The ! symbol before a path in the .gitignore file negates any previous ignore rules for that path, effectively including it in the repository.

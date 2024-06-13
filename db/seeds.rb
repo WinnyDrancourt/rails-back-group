@@ -27,13 +27,15 @@ testuser = User.create(
 end
 
 puts "Users created mail sent"
-
+i = 0
 50.times do
+  i += 1
   Product.create!(
     property_type: ['appartement', 'maison'].sample,
     category: ['neuf', 'ancien', 'projet de construction'].sample,
     city: Faker::Address.city[0...100],
-    title: Faker::Lorem.characters(number: rand(5..50)),
+    title: "maison ou appartement #{i}",
+    # title: Faker::Lorem.characters(number: rand(5..50)),
     price: Faker::Commerce.price(range: 10000..10000000),
     description: Faker::Lorem.characters(number: rand(50..400)),
     user_id: User.all.sample.id,
