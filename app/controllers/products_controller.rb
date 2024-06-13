@@ -55,23 +55,35 @@ class ProductsController < ApplicationController
       @products = @products.limit(limit).offset(offset)
     end
 
+    @products = @products.map do |product|
+      include_user_and_image_url(product)
+    end
+
     render json: @products
   end
 
   # GET /products/1
   def show
-    render json: @product.as_json(include: { user: { only: [:email] } })
+    if @product
+      product_json = include_user_and_image_url(@product)
+      render json: product_json
+    else
+      render json: { error: "Product not found" }, status: :not_found
+    end
   end
 
   # POST /products
   def create
     @product = current_user.products.build(product_params)
-    if params[:image].present?
-      @product.image.attach(params[:image])
+    # equivalent à :
+    # @product = Product.new(product_params)
+    # @product.user = current_user
+    if params[:product][:image].present?
+      @product.image.attach(params[:product][:image])
     end
 
     if @product.save
-      render json: @product, status: :created, location: @product
+      render json: include_user_and_image_url(@product), status: :created, location: @product
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -80,7 +92,13 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      render json: @product
+      if params[:product][:image].present?
+        @product.image.purge
+        @product.image.attach(params[:product][:image])
+      elsif @product.image.attached?
+        @product.image.purge
+      end
+      render json: include_user_and_image_url(@product)
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -88,7 +106,11 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1
   def destroy
-    @product.destroy!
+    if @listing.destroy!
+      render json: { message: "product has been deleted" }
+    else
+      render json: @listing.errors, status: :unprocessable_entity
+    end
   end
 
   private
@@ -128,7 +150,21 @@ class ProductsController < ApplicationController
         :garden, 
         :basement, 
         :caretaker, 
-        :city
+        :city,
+        :image
       )
+    end
+
+    def include_user(product)
+      product.as_json(include: { user: { only: [:email] } })
+    end
+
+    def include_image_url(product)
+      product.as_json.merge(image_url: product.image.attached? ? url_for(product.image) : nil)
+    end
+
+    def include_user_and_image_url(product)
+      product_json = include_user(product)
+      product_json.merge(include_image_url(product))
     end
 end
