@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  include Rails.application.routes.url_helpers
   before_action :set_product, only: %i[ show update destroy ]
   before_action :authenticate_user!, only: %i[ create update destroy ]
   before_action :authorize_user, only: %i[ update destroy ]
@@ -54,22 +55,31 @@ class ProductsController < ApplicationController
   
       @products = @products.limit(limit).offset(offset)
     end
-
+    # Convertissez vos produits en JSON et ajoutez l'URL de l'image
+    @products = @products.map do |product|
+      product.as_json.merge({
+        image_url: product.image.attached? ? url_for(product.image) : nil
+      })
+    end
+  
     render json: @products
   end
 
   # GET /products/1
   def show
-    render json: @product.as_json(include: { user: { only: [:email] } })
+    if @product.image.attached?
+      render json: @product.as_json.merge({
+        image_url: rails_blob_url(@product.image, only_path: true)
+      })
+    else
+      render json: @product.as_json(include: { user: { only: [:email] } })
+    end
   end
 
   # POST /products
   def create
     @product = current_user.products.build(product_params)
-    if params[:image].present?
-      @product.image.attach(params[:image])
-    end
-
+    
     if @product.save
       render json: @product, status: :created, location: @product
     else
@@ -79,12 +89,15 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1
   def update
+    
     if @product.update(product_params)
       render json: @product
     else
       render json: @product.errors, status: :unprocessable_entity
     end
   end
+
+  
 
   # DELETE /products/1
   def destroy
@@ -128,7 +141,9 @@ class ProductsController < ApplicationController
         :garden, 
         :basement, 
         :caretaker, 
-        :city
+        :city,
+        :image
+        
       )
     end
 end
