@@ -78,11 +78,14 @@ class ProductsController < ApplicationController
     # equivalent à :
     # @product = Product.new(product_params)
     # @product.user = current_user
-    if params[:product][:image].present?
+    if params[:product][:image].present? # ce bloc n'est pas obligatoire, mais peut servir à traiter l'image séparément avant de l'atacher (compresser, decouper etc)
+      puts params[:product]
+      puts params[:image]
+      puts params[:product][:image]
       @product.image.attach(params[:product][:image])
     end
 
-    if @product.save
+    if @product.save # ce bloc attache et sauvegard l'image avec le produit automatiquement (meme si on n'appelle pas la methode image.attache(), Attention cependant à ce que l'image soit bien envoyé avec product_params)
       render json: include_user_and_image_url(@product), status: :created, location: @product
     else
       render json: @product.errors, status: :unprocessable_entity
