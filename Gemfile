@@ -43,7 +43,7 @@ end
 
 
 gem "devise", "~> 4.9"
-gem "devise-jwt", "~> 0.11.0"
+gem "devise-jwt", "~> 0.12.1"
 
 gem "faker", "~> 3.4"
 gem "table_print", "~> 1.5"
